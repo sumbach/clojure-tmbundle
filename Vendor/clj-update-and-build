@@ -52,6 +52,44 @@ exit 1
 )
 }
 
+function git_update {
+(
+	if [[ -d "$1/.git" ]]; then
+		cat <<-MSG
+			
+			=====================================================
+			== Update $1 from github
+			=====================================================
+			
+MSG
+		cd "$1"
+		git pull
+	else
+		cat <<-MSG
+			
+			=====================================================
+			== CheckOut $1 from github
+			=====================================================
+			
+MSG
+		if [[ -d "$1" ]]; then
+			rm -rf "$1" || exit 1
+		fi
+    git clone git://github.com/richhickey/$1.git &&
+		cd "$1"
+	fi
+) || (
+cat <<-MSG
+	
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!! Failed update of $1 from googlecode svn
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+MSG
+exit 1
+)
+}
+
 function build {
 (
 	name=$1 ; shift
@@ -153,8 +191,8 @@ MSG
 
 (
 remove_sourceforge &&
-svn_update clojure &&
-svn_update clojure-contrib &&
+git_update clojure &&
+git_update clojure-contrib &&
 build clojure &&
 build clojure-contrib -Dclojure.jar=../clojure/clojure.jar &&
 mv -f clojure/clojure.jar . &&
