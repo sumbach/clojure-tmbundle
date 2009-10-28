@@ -9,18 +9,18 @@
 
 require ENV['TM_BUNDLE_SUPPORT'] + '/clojure.rb'
 
-Clojure::Mate.run_current_form_or_line</string>
+Clojure::Mate.get_classpath</string>
+	<key>fallbackInput</key>
+	<string>word</string>
 	<key>input</key>
-	<string>document</string>
-	<key>keyEquivalent</key>
-	<string>@r</string>
+	<string>selection</string>
 	<key>name</key>
-	<string>Run selection</string>
+	<string>Get java.class.path</string>
 	<key>output</key>
-	<string>showAsTooltip</string>
+	<string>showAsHTML</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>uuid</key>
-	<string>B22B0223-9874-4EBE-807C-F99D559D108D</string>
+	<string>17DCB870-B34A-499F-A132-502DA8CE047B</string>
 </dict>
 </plist>

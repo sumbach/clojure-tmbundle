@@ -3,14 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(comment
+
+${0:;; Ignores body, yields nil}
+
+)
+</string>
 	<key>name</key>
-	<string>def</string>
+	<string>comment</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>com</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>52358977-8819-4AD0-8949-C4278C8B22B5</string>
 </dict>
 </plist>

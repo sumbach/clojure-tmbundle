@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(defonce ${0:name expr})</string>
 	<key>name</key>
-	<string>def</string>
+	<string>defonce</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>once</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>1972D288-9766-454E-A1A7-C9A7527CFEF7</string>
 </dict>
 </plist>

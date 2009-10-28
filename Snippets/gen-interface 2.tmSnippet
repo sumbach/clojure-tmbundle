@@ -3,14 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(gen-interface
+	:name ${1:package.qualified.name}${4:
+	:extends [${5:Interfaces}]}${12:
+	:methods [[${13:a-name} [${14:param.Types}] ${15:return.Type}]${16:, ...}]})
+$0</string>
 	<key>name</key>
-	<string>def</string>
+	<string>gen-interface</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>inter</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>6E408655-7567-41CB-813D-C568BAE89A5D</string>
 </dict>
 </plist>

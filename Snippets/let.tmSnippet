@@ -3,14 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(let [${1:bindings*}]
+  $0)</string>
 	<key>name</key>
-	<string>def</string>
+	<string>let</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>let</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>67B1A4D1-0805-4B58-AB92-8C05628607FC</string>
 </dict>
 </plist>

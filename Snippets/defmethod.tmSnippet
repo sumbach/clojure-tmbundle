@@ -3,14 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(defmethod ${1:multifn} ${2:dispatch-val} [${3:params*}]
+  $0)</string>
 	<key>name</key>
-	<string>def</string>
+	<string>defmethod</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>meth</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>673B988A-5079-4E62-B097-5C2113B4F26D</string>
 </dict>
 </plist>

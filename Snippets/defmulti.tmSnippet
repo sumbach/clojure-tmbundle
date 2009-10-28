@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(defmulti ${1:name} ${2:(fn [${3:params*}] $0)})</string>
 	<key>name</key>
-	<string>def</string>
+	<string>defmulti</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>mult</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>A20A307A-65B6-4086-8D57-0B3E4BC1C554</string>
 </dict>
 </plist>

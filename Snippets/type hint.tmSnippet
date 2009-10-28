@@ -3,14 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>#^${0:Class}</string>
+	<key>keyEquivalent</key>
+	<string>#</string>
 	<key>name</key>
-	<string>def</string>
+	<string>type hint</string>
 	<key>scope</key>
-	<string>source.clojure</string>
+	<string>meta.function.parameters.vector.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>#</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>4A2F6F0A-E368-4542-8BD6-C83199B374E4</string>
 </dict>
 </plist>

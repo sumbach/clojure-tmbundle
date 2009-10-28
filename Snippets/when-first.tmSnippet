@@ -3,14 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(def ${1:name} ${0:expr})</string>
+	<string>(when-first [${1:binding-x xs}] 
+  $0)</string>
 	<key>name</key>
-	<string>def</string>
+	<string>when-first</string>
 	<key>scope</key>
 	<string>source.clojure</string>
 	<key>tabTrigger</key>
-	<string>def</string>
+	<string>whf</string>
 	<key>uuid</key>
-	<string>95534E96-D85B-4E0B-8A29-7D9C50D79357</string>
+	<string>B9383AE5-7B15-4FB1-8933-CC091DC64177</string>
 </dict>
 </plist>
