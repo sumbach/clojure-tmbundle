@@ -12,7 +12,7 @@
   "creates and returns a server socket on port, will pass the client
   socket to accept-socket on connection" 
   [accept-socket port]
-    (let [ss (new ServerSocket port 0  (InetAddress/getByName "localhost"))]
+    (let [ss (new ServerSocket port 0 (InetAddress/getByName "localhost"))]
       (on-thread #(when-not (. ss (isClosed))
                     (try (accept-socket (. ss (accept)))
                          (catch SocketException e))
