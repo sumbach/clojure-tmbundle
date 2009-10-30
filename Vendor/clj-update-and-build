@@ -82,7 +82,7 @@ MSG
 cat <<-MSG
 	
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!! Failed update of $1 from googlecode svn
+	!! Failed update of $1 from github
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 MSG
@@ -145,8 +145,7 @@ function update_doc {
 	if [[ -d clojure-documentation ]]; then
 		rm -rf clojure-documentation || exit 1
 	fi
-	cd clj-doc &&
-	(ant -q -Dclojure_jar=../clojure.jar -Dclojure_contrib_jar=../clojure-contrib.jar)
+	cd clj-doc && (CLASSPATH=../clojure.jar:../clojure-contrib.jar:clj-doc.jar:../clj-html/clj-html.jar:../clj-html-helpers/clj-html-helpers.jar java clojure.main bin/clojure_gen.clj ../clojure-documentation)
 )
 #TODO : Fixe return code
 if [[ -e "$script_path_only/clojure-documentation/index.html" ]]; then
