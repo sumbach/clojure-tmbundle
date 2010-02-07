@@ -90,13 +90,13 @@ exit 1
 )
 }
 
-function build {
+function build-ant {
 (
 	name=$1 ; shift
 	cat <<-MSG
 		
 		=====================================================
-		== Build $name ${1:+ with option : $*}
+		== Build (ant) $name ${1:+ with option : $*}
 		=====================================================
 		
 MSG
@@ -105,7 +105,31 @@ MSG
 	( cat <<-MSG
 			
 			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			!! Failed build of $name ${1:+ with option : $*}
+			!! Failed build (ant) of $name ${1:+ with option : $*}
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+MSG
+		exit 1
+	)
+)
+}
+
+function build-mvn {
+(
+	name=$1 ; shift
+	cat <<-MSG
+		
+		=====================================================
+		== Build (mvn) $name ${1:+ with option : $*}
+		=====================================================
+		
+MSG
+	cd "$name"
+	(mvn package "$*") ||
+	( cat <<-MSG
+			
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			!! Failed build (mvn) of $name ${1:+ with option : $*}
 			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			
 MSG
@@ -192,10 +216,10 @@ MSG
 remove_sourceforge &&
 git_update clojure &&
 git_update clojure-contrib &&
-build clojure &&
-build clojure-contrib -Dclojure.jar=../clojure/clojure.jar &&
+build-ant clojure &&
+build-mvn clojure-contrib -o -Dclojure.jar="$script_path_only/clojure/clojure.jar" &&
 mv -f clojure/clojure.jar . &&
-mv -f clojure-contrib/clojure-contrib.jar . &&
+mv -f clojure-contrib/target/clojure-contrib-*.jar clojure-contrib.jar &&
 cat <<-MSG
 
 	=====================================================
