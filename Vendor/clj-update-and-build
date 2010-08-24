@@ -101,7 +101,7 @@ function build-ant {
 		
 MSG
 	cd "$name"
-	(ant $* clean jar) ||
+	(ant "$@" clean jar) ||
 	( cat <<-MSG
 			
 			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -125,7 +125,7 @@ function build-mvn {
 		
 MSG
 	cd "$name"
-	(mvn package "$*") ||
+	(mvn "$@" package) ||
 	( cat <<-MSG
 			
 			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -217,7 +217,7 @@ remove_sourceforge &&
 git_update clojure &&
 git_update clojure-contrib &&
 build-ant clojure &&
-build-mvn clojure-contrib -o -Dclojure.jar="$script_path_only/clojure/clojure.jar" &&
+build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure/clojure.jar" &&
 mv -f clojure/clojure.jar . &&
 mv -f clojure-contrib/target/clojure-contrib-*.jar clojure-contrib.jar &&
 cat <<-MSG
