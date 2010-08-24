@@ -75,7 +75,7 @@ MSG
 		if [[ -d "$1" ]]; then
 			rm -rf "$1" || exit 1
 		fi
-    git clone git://github.com/richhickey/$1.git &&
+    git clone git://github.com/clojure/$1.git &&
 		cd "$1"
 	fi
 ) || (
@@ -138,60 +138,6 @@ MSG
 )
 }
 
-function update_submodule {
-(
-	cd "$script_path_only" &&
-	cd .. &&
-	git submodule update --init &&
-	cat <<-MSG
-		
-		=====================================================
-		== CheckOut clj-doc,clj-html,clj-html-helpers
-		== from github
-		=====================================================
-		
-MSG
-) || (
-cat <<-MSG
-	
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!! Failed update of clj-doc,clj-html,clj-html-helpers
-	!! from github
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
-MSG
-exit 1
-)
-}
-
-function update_doc {
-(
-	if [[ -d clojure-documentation ]]; then
-		rm -rf clojure-documentation || exit 1
-	fi
-	cd clj-doc && (CLASSPATH=../clojure.jar:../clojure-contrib.jar:clj-doc.jar:../clj-html/clj-html.jar:../clj-html-helpers/clj-html-helpers.jar java clojure.main bin/clojure_gen.clj ../clojure-documentation)
-)
-#TODO : Fixe return code
-if [[ -e "$script_path_only/clojure-documentation/index.html" ]]; then
-cat <<-MSG
-	
-	=====================================================
-	== Build documentation for clojure and clojure-contrib
-	=====================================================
-	
-MSG
-else
-cat <<-MSG
-	
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!! Failed documentation generation
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
-MSG
-exit 1
-fi
-}
-
 function remove_sourceforge {
 (
 	if [[ -d "clojure/.svn" ]]; then
@@ -217,9 +163,9 @@ remove_sourceforge &&
 git_update clojure &&
 git_update clojure-contrib &&
 build-ant clojure &&
-build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure/clojure.jar" &&
-mv -f clojure/clojure.jar . &&
-mv -f clojure-contrib/target/clojure-contrib-*.jar clojure-contrib.jar &&
+mv -f clojure/clojure-*.jar clojure.jar &&
+build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure.jar" &&
+mv -f clojure-contrib/modules/complete/target/complete-*.jar clojure-contrib.jar &&
 cat <<-MSG
 
 	=====================================================
@@ -227,4 +173,4 @@ cat <<-MSG
 	=====================================================
 
 MSG
-) && update_submodule && update_doc
+)
