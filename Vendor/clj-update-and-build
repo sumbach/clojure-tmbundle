@@ -167,7 +167,7 @@ git_update clojure clojure &&
 git_update clojure-contrib sumbach &&
 build-ant clojure &&
 mv -f clojure/clojure-*.jar clojure.jar &&
-build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure.jar" &&
+build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure.jar" "-Dmaven.test.skip=true" &&
 mv -f clojure-contrib/modules/complete/target/complete-*.jar clojure-contrib.jar &&
 cat <<-MSG
 
