@@ -17,7 +17,7 @@ Additionally, if clj is not found on your Textmate's PATH, then it will use the 
 Run this:
  
 	$ cd ~/Library/Application\ Support/TextMate/Bundles
-	$ git clone git://github.com/kek/clojure-tmbundle.git Clojure.tmbundle
+	$ git clone git://github.com/sumbach/clojure-tmbundle.git Clojure.tmbundle
 	$ osascript -e 'tell app "TextMate" to reload bundles'
 
 An update script will :
