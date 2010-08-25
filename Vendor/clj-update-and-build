@@ -54,35 +54,38 @@ exit 1
 
 function git_update {
 (
-	if [[ -d "$1/.git" ]]; then
+	project=$1 ; shift
+	user=$1 ; shift
+
+	if [[ -d "$project/.git" ]]; then
 		cat <<-MSG
 			
 			=====================================================
-			== Update $1 from github
+			== Update $project from github
 			=====================================================
 			
 MSG
-		cd "$1"
+		cd "$project"
 		git pull
 	else
 		cat <<-MSG
 			
 			=====================================================
-			== CheckOut $1 from github
+			== CheckOut $user/$project from github
 			=====================================================
 			
 MSG
-		if [[ -d "$1" ]]; then
-			rm -rf "$1" || exit 1
+		if [[ -d "$project" ]]; then
+			rm -rf "$project" || exit 1
 		fi
-    git clone git://github.com/clojure/$1.git &&
-		cd "$1"
+    git clone git://github.com/$user/$project.git &&
+		cd "$project"
 	fi
 ) || (
 cat <<-MSG
 	
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!! Failed update of $1 from github
+	!! Failed update of $project from github
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 MSG
@@ -160,8 +163,8 @@ MSG
 
 (
 remove_sourceforge &&
-git_update clojure &&
-git_update clojure-contrib &&
+git_update clojure clojure &&
+git_update clojure-contrib sumbach &&
 build-ant clojure &&
 mv -f clojure/clojure-*.jar clojure.jar &&
 build-mvn clojure-contrib "-Dclojure.jar=$script_path_only/clojure.jar" &&
